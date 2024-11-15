@@ -30,3 +30,14 @@ server.listen(PORT, () => {
 });
 const cors = require('cors');
 app.use(cors());
+
+let username; // Declare the variable at the top
+
+function setUsername() {
+    username = document.getElementById('usernameInput').value; // Initialize the value
+    if (username) {
+        document.getElementById('usernameScreen').style.display = 'none';
+        document.getElementById('chatScreen').style.display = 'block';
+    }
+}
+
