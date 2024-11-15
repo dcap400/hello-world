@@ -15,14 +15,17 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
     console.log('A user connected');
 
+    // Listen for new messages from clients
     socket.on('newMessage', (data) => {
-        io.emit('newMessage', data); // Broadcast the message
+        console.log('Message received:', data);
+        io.emit('newMessage', data); // Broadcast the message to all clients
     });
 
     socket.on('disconnect', () => {
         console.log('A user disconnected');
     });
 });
+
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
