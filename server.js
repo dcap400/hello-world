@@ -44,3 +44,8 @@ function setUsername() {
     }
 }
 
+io.on('connection', (socket) => {
+    console.log('Client connected');
+});
+
+
