@@ -48,4 +48,19 @@ io.on('connection', (socket) => {
     console.log('Client connected');
 });
 
+io.on('connection', (socket) => {
+    console.log('A user connected');
+
+    // Listen for new messages
+    socket.on('newMessage', (data) => {
+        console.log('Message received:', data); // Debug log
+        io.emit('newMessage', data); // Broadcast the message to all clients
+    });
+
+    socket.on('disconnect', () => {
+        console.log('A user disconnected');
+    });
+});
+
+
 
