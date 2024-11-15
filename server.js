@@ -6,14 +6,17 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-app.use(express.static('public')); // Serve the client files from the 'public' folder
+// Serve a basic message for testing
+app.get('/', (req, res) => {
+    res.send('Backend is running!');
+});
 
+// WebSocket setup
 io.on('connection', (socket) => {
     console.log('A user connected');
 
-    // Broadcast messages to all connected clients
     socket.on('newMessage', (data) => {
-        io.emit('newMessage', data);
+        io.emit('newMessage', data); // Broadcast the message
     });
 
     socket.on('disconnect', () => {
